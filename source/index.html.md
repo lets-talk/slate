@@ -17,13 +17,13 @@ search: true
 
 # Introducción
 
-Bienvenido a la API Web de Let's Talk. Puedes usar nuestra API para interactuar con las conversaciones, mensajes, usuarios y varios recursos más relacionados una conversación de chat.
+Bienvenido a la *API* Web de Let's Talk. Puedes usar nuestra **API** para interactuar con las conversaciones, mensajes, usuarios y varios recursos más relacionados una conversación de chat.
 
 Por el momento tenemos ejemplos de código con `shell` y `curl`. Puedes verlos en el área oscura a la derecha.
 
 # Autenticación
 
-> Para autorizar una request usa este código:
+> Para autorizar una **request** puedes utilizar el siguiente código:
 
 
 ```shell
@@ -32,23 +32,28 @@ curl "api_endpoint_here"
   -H "Authorization: Basic $(echo -n 'raw_api_key:X' | base64)"
 ```
 
-> Asegúrate de reemplazar `raw_api_key` con tu API Key.
+> Asegúrate de reemplazar `raw_api_key` con tu *API Key*.
 
-Let's Talk utiliza API Keys para la autenticación. Para obtener una API Key existen dos opciones:
+Let's Talk utiliza *API Keys* para la autenticación. La *API* puede ser usada como  **usuario/cliente** o  **usuario/agente**
 
-- Solicitar una API Key de usuario agente al correo a soporte@ltmessenger.com
-- Solicitar un `consumer_key` y `consumer_token`, utilizar el endpoint [Crear/obtener un cliente](#Crear/obtener un cliente) para obtener una API Key y usar la api como un usuario/cliente
+- **usuario/agente**: Usuario que se encarga de atender las conversaciones por el lado de la organización.
+- **usuario/cliente**: Usuario que inicia una conversación desde algunos de los canales disponibles como el *widget* web o la aplicación móvil.
 
-La API Key debe ser incluida en todas las peticiones como header según el protocolo [Basic access authentication](https://en.wikipedia.org/wiki/Basic_access_authentication).
+La formas de obtener una *API Key* depende del tipo de usuario que interectuará con la API:
 
-Cuando recibas la API Key es necesario codificarla en _**base 64**_ adicionando los caractéres `:X`
+- **usuario/agente**: Solicitar una *API Key* al correo [soporte@ltmessenger.com](mailto:soporte@ltmessenger.com)
+- **usuario/cliente**: Solicitar un `consumer_key`, `consumer_token` y `organization_id` al correo [soporte@ltmessenger.com](mailto:soporte@ltmessenger.com) para utilizar el endpoint [Crear/obtener un cliente](#Crear/obtener un cliente) y obtener una API Key de **usuario/cliente**.
 
-El header se ve como lo siguiente:
+La *API Key* debe ser incluida en todas las peticiones a los *endpoints* autenticados como *header* según el protocolo [Basic access authentication](https://en.wikipedia.org/wiki/Basic_access_authentication).
+
+Cuando recibas la *API Key* es necesario codificarla en `base64` adicionando los caractéres `:X`.
+
+El *header* se ve como lo siguiente:
 
 `Authorization: encoded_api_key== `
 
 <aside class="notice">
-Debes reemplazar <code>encoded_api_key== </code> por tu API Key, con los caracteres <code>`:X`</code> concatenados al final y codificada en base 64
+Debes reemplazar <code>encoded_api_key== </code> por tu <i>API Key</i>, con los caracteres <code>`:X`</code> concatenados al final y codificada en `base64`
 </aside>
 
 <!-- # Kittens
