@@ -1,71 +1,57 @@
 ---
-title: API Reference
+title: Documentación Let's Talk API
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  # - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
+  # - errors
+  - tokens
 
 search: true
 ---
 
-# Introduction
+# Introducción
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Bienvenido a la API Web de Let's Talk. Puedes usar nuestra API para interactuar con las conversaciones, mensajes, usuarios y varios recursos más relacionados una conversación de chat.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Por el momento tenemos ejemplos de código con `shell` y `curl`. Puedes verlos en el área oscura a la derecha.
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+# Autenticación
 
-# Authentication
+> Para autorizar una request usa este código:
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
 
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+  -H "Authorization: Basic $(echo -n 'raw_api_key:X' | base64)"
 ```
 
-```javascript
-const kittn = require('kittn');
+> Asegúrate de reemplazar `raw_api_key` con tu API Key.
 
-let api = kittn.authorize('meowmeowmeow');
-```
+Let's Talk utiliza API Keys para la autenticación. Para obtener una API Key existen dos opciones:
 
-> Make sure to replace `meowmeowmeow` with your API key.
+- Solicitar una API Key de usuario agente al correo a soporte@ltmessenger.com
+- Solicitar un `consumer_key` y `consumer_token`, utilizar el endpoint [Crear/obtener un cliente](#Crear/obtener un cliente) para obtener una API Key y usar la api como un usuario/cliente
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+La API Key debe ser incluida en todas las peticiones como header según el protocolo [Basic access authentication](https://en.wikipedia.org/wiki/Basic_access_authentication).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Cuando recibas la API Key es necesario codificarla en _**base 64**_ adicionando los caractéres `:X`
 
-`Authorization: meowmeowmeow`
+El header se ve como lo siguiente:
+
+`Authorization: encoded_api_key== `
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+Debes reemplazar <code>encoded_api_key== </code> por tu API Key, con los caracteres <code>`:X`</code> concatenados al final y codificada en base 64
 </aside>
 
-# Kittens
+<!-- # Kittens
 
 ## Get All Kittens
 
@@ -135,18 +121,6 @@ Remember — a happy kitten is an authenticated kitten!
 
 ## Get a Specific Kitten
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
 ```
 
 ```shell
@@ -154,12 +128,6 @@ curl "http://example.com/api/kittens/2"
   -H "Authorization: meowmeowmeow"
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
 
 > The above command returns JSON structured like this:
 
@@ -189,31 +157,11 @@ ID | The ID of the kitten to retrieve
 
 ## Delete a Specific Kitten
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
 
 ```shell
 curl "http://example.com/api/kittens/2"
   -X DELETE
   -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
 ```
 
 > The above command returns JSON structured like this:
@@ -235,5 +183,5 @@ This endpoint deletes a specific kitten.
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+ID | The ID of the kitten to delete -->
 
