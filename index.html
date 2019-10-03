@@ -241,38 +241,45 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduccion'>Introducción</h1>
-<p>Bienvenido a la API Web de Let&#39;s Talk. Puedes usar nuestra API para interactuar con las conversaciones, mensajes, usuarios y varios recursos más relacionados una conversación de chat.</p>
+<p>Bienvenido a la <em>API</em> Web de Let&#39;s Talk. Puedes usar nuestra <strong>API</strong> para interactuar con las conversaciones, mensajes, usuarios y varios recursos más relacionados una conversación de chat.</p>
 
 <p>Por el momento tenemos ejemplos de código con <code>shell</code> y <code>curl</code>. Puedes verlos en el área oscura a la derecha.</p>
 <h1 id='autenticacion'>Autenticación</h1>
 <blockquote>
-<p>Para autorizar una request usa este código:</p>
+<p>Para autorizar una <strong>request</strong> puedes utilizar el siguiente código:</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"api_endpoint_here"</span>
   -H <span class="s2">"Authorization: Basic </span><span class="k">$(</span><span class="nb">echo</span> -n <span class="s1">'raw_api_key:X'</span> | base64<span class="k">)</span><span class="s2">"</span>
 </code></pre>
 <blockquote>
-<p>Asegúrate de reemplazar <code>raw_api_key</code> con tu API Key.</p>
+<p>Asegúrate de reemplazar <code>raw_api_key</code> con tu <em>API Key</em>.</p>
 </blockquote>
 
-<p>Let&#39;s Talk utiliza API Keys para la autenticación. Para obtener una API Key existen dos opciones:</p>
+<p>Let&#39;s Talk utiliza <em>API Keys</em> para la autenticación. La <em>API</em> puede ser usada como  <strong>usuario/cliente</strong> o  <strong>usuario/agente</strong></p>
 
 <ul>
-<li>Solicitar una API Key de usuario agente al correo a soporte@ltmessenger.com</li>
-<li>Solicitar un <code>consumer_key</code> y <code>consumer_token</code>, utilizar el endpoint <a href="#Crear/obtener%20un%20cliente">Crear/obtener un cliente</a> para obtener una API Key y usar la api como un usuario/cliente</li>
+<li><strong>usuario/agente</strong>: Usuario que se encarga de atender las conversaciones por el lado de la organización.</li>
+<li><strong>usuario/cliente</strong>: Usuario que inicia una conversación desde algunos de los canales disponibles como el <em>widget</em> web o la aplicación móvil.</li>
 </ul>
 
-<p>La API Key debe ser incluida en todas las peticiones como header según el protocolo <a href="https://en.wikipedia.org/wiki/Basic_access_authentication">Basic access authentication</a>.</p>
+<p>La formas de obtener una <em>API Key</em> depende del tipo de usuario que interectuará con la API:</p>
 
-<p>Cuando recibas la API Key es necesario codificarla en <em><strong>base 64</strong></em> adicionando los caractéres <code>:X</code></p>
+<ul>
+<li><strong>usuario/agente</strong>: Solicitar una <em>API Key</em> al correo <a href="mailto:soporte@ltmessenger.com">soporte@ltmessenger.com</a></li>
+<li><strong>usuario/cliente</strong>: Solicitar un <code>consumer_key</code>, <code>consumer_token</code> y <code>organization_id</code> al correo <a href="mailto:soporte@ltmessenger.com">soporte@ltmessenger.com</a> para utilizar el endpoint <a href="#Crear/obtener%20un%20cliente">Crear/obtener un cliente</a> y obtener una API Key de <strong>usuario/cliente</strong>.</li>
+</ul>
 
-<p>El header se ve como lo siguiente:</p>
+<p>La <em>API Key</em> debe ser incluida en todas las peticiones a los <em>endpoints</em> autenticados como <em>header</em> según el protocolo <a href="https://en.wikipedia.org/wiki/Basic_access_authentication">Basic access authentication</a>.</p>
+
+<p>Cuando recibas la <em>API Key</em> es necesario codificarla en <code>base64</code> adicionando los caractéres <code>:X</code>.</p>
+
+<p>El <em>header</em> se ve como lo siguiente:</p>
 
 <p><code>Authorization: encoded_api_key==</code></p>
 
 <aside class="notice">
-Debes reemplazar <code>encoded_api_key== </code> por tu API Key, con los caracteres <code>`:X`</code> concatenados al final y codificada en base 64
+Debes reemplazar <code>encoded_api_key== </code> por tu <i>API Key</i>, con los caracteres <code>`:X`</code> concatenados al final y codificada en `base64`
 </aside>
 
 <!-- # Kittens
