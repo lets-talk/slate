@@ -241,6 +241,14 @@
               </ul>
           </li>
           <li>
+            <a href="#grupo-de-conversaciones" class="toc-h1 toc-link" data-title="Grupo de Conversaciones">Grupo de Conversaciones</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#asignar-grupo-a-conversacion" class="toc-h2 toc-link" data-title="Asignar grupo a conversación.">Asignar grupo a conversación.</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#mensajes" class="toc-h1 toc-link" data-title="Mensajes">Mensajes</a>
               <ul class="toc-list-h2">
                   <li>
@@ -800,6 +808,79 @@ ID | The ID of the kitten to delete -->
 <td>si</td>
 <td>Identificador del mensaje creado por el consumidor de la <em>API</em>. Debe seguir el formato <a href="https://es.wikipedia.org/wiki/Identificador_%C3%BAnico_global">GUID</a></td>
 <td>-</td>
+</tr>
+</tbody></table>
+
+<h3 id='codigos-de-respuesta'>Códigos de respuesta</h3>
+
+<table><thead>
+<tr>
+<th>Código</th>
+<th>Significado</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>Credenciales inválidas.</td>
+</tr>
+<tr>
+<td>200</td>
+<td>Operación ejecutada con éxito.</td>
+</tr>
+</tbody></table>
+<h1 id='grupo-de-conversaciones'>Grupo de Conversaciones</h1><h2 id='asignar-grupo-a-conversacion'>Asignar grupo a conversación.</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  https://api.letsta.lk/api/v1/conversations/<span class="o">{</span>conversation_id<span class="o">}</span>/conversation_groups <span class="se">\</span>
+  -H <span class="s1">'Accept: application/json, text/plain, */*'</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Basic {{encoded_api_key}}"</span> <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json;charset=UTF-8'</span> <span class="se">\</span>
+  -d <span class="s1">'{"conversationId":"{conversation_id}","{group_id}":{group_id},"transfer":false}'</span>
+</code></pre>
+<blockquote>
+<p>El comando previo retorna un JSON como el siguiente:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"conversation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">827</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-12-23T18:53:14.000+0000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ventas"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"auto_join"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Al asignar un grupo a una conversación es opcional que el usuario que realiza la acción abandone la conversación, para esto el parámetro <code>transfer</code> debe ir <code>true</code>.
+Tener en consideración que al asignar a un grupo la forma en que los miembros del dicho grupo de unen a la conversación depende de sus propias reglas y no de cómo se le asigne.
+Un mensaje tipo <code>SYSTEM</code> es agregado indicando quién realizó la acción de asignación.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.letsta.lk/api/v1/conversations/{conversation_id}/conversation_groups</code></p>
+<h3 id='body-parameters'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Propiedad</th>
+<th>Tipo</th>
+<th>¿Requerido?</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>group_id</td>
+<td>integer</td>
+<td>si</td>
+<td>Id del grupo que recibirá la conversación. Este Id debe solicitarse a soporte para cada caso</td>
+</tr>
+<tr>
+<td>conversation_id</td>
+<td>integer</td>
+<td>si</td>
+<td>Id del inquiry de la conversación</td>
+</tr>
+<tr>
+<td>transfer</td>
+<td>bool</td>
+<td>no</td>
+<td>Al indicar <code>true</code> el sistema eliminará la memebresía actual del usuario que realiza la asignación.</td>
 </tr>
 </tbody></table>
 
