@@ -240,6 +240,17 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#mensajes" class="toc-h1 toc-link" data-title="Mensajes">Mensajes</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#crear-mensaje-de-texto-plano" class="toc-h2 toc-link" data-title="Crear mensaje de texto plano">Crear mensaje de texto plano</a>
+                  </li>
+                  <li>
+                    <a href="#crear-mensaje-con-archivo-adjunto" class="toc-h2 toc-link" data-title="Crear mensaje con archivo adjunto">Crear mensaje con archivo adjunto</a>
+                  </li>
+              </ul>
+          </li>
       </ul>
         <ul class="toc-footer">
             <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
@@ -489,7 +500,7 @@ ID | The ID of the kitten to delete -->
     </span><span class="s2">"organization_timezone_offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">-14400</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Este endpoint crea un cliente con los datos proveídos. Si el cliente existe previamente se retornan sus datos.</p>
+<p>Creación de un <strong>usuario/cliente</strong> con obtención de token y datos asociados. Si el cliente existe previamente se retornan sus datos existentes.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://api.letsta.lk/api/v1/integration/auth/token</code></p>
 <h3 id='body-parameters'>Body Parameters</h3>
@@ -548,10 +559,12 @@ ID | The ID of the kitten to delete -->
 <td>Consumer token para autorizar la creación o obtención del cliente y sus datos.</td>
 </tr>
 </tbody></table>
-<h3 id='response-codes'>Response codes</h3>
+
+<h3 id='codigos-de-respuesta'>Códigos de respuesta</h3>
+
 <table><thead>
 <tr>
-<th>Código de error</th>
+<th>Código</th>
 <th>Significado</th>
 </tr>
 </thead><tbody>
@@ -714,7 +727,7 @@ ID | The ID of the kitten to delete -->
     </span><span class="s2">"greeting"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hola!! como estás"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Este endpoint inicia una conversación con los datos proveidos. El autor del mensaje y la conversación es el cliente autenticado con la <em>API Key</em> especificada en el <em>header</em>.</p>
+<p>Creación de una una conversación. El autor del mensaje y la conversación es el cliente autenticado con la <em>API Key</em> especificada en el <em>header</em>.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://api.letsta.lk/api/v1/conversations</code></p>
 <h3 id='body-parameters'>Body Parameters</h3>
@@ -764,7 +777,7 @@ ID | The ID of the kitten to delete -->
 <th>Tipo</th>
 <th>¿Requerido?</th>
 <th>Descripción</th>
-<th>Valor</th>
+<th>Valor aceptado</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -789,10 +802,313 @@ ID | The ID of the kitten to delete -->
 <td>-</td>
 </tr>
 </tbody></table>
-<h3 id='response-codes'>Response codes</h3>
+
+<h3 id='codigos-de-respuesta'>Códigos de respuesta</h3>
+
 <table><thead>
 <tr>
-<th>Código de error</th>
+<th>Código</th>
+<th>Significado</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>Credenciales inválidas.</td>
+</tr>
+<tr>
+<td>200</td>
+<td>Operación ejecutada con éxito.</td>
+</tr>
+</tbody></table>
+<h1 id='mensajes'>Mensajes</h1><h2 id='crear-mensaje-de-texto-plano'>Crear mensaje de texto plano</h2><pre class="highlight shell tab-shell"><code>curl --location --request POST <span class="s2">"https://api.letsta.lk/api/v1/messages"</span> <span class="se">\</span>
+--header <span class="s2">"Authorization: Basic cUhRMlRuVXhqZldqdFVxTTlUbVI6WA=="</span> <span class="se">\</span>
+--header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+--data <span class="s2">"{
+  </span><span class="se">\"</span><span class="s2">content</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Quiero comprar un Molecular Disruption Device</span><span class="se">\"</span><span class="s2">,
+  </span><span class="se">\"</span><span class="s2">content_type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">text/plain</span><span class="se">\"</span><span class="s2">,
+  </span><span class="se">\"</span><span class="s2">remote_id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">a55ac7b8-bca7-4ab3-a2e0-e0579fa21cea</span><span class="se">\"</span><span class="s2">,
+  </span><span class="se">\"</span><span class="s2">conversation_id</span><span class="se">\"</span><span class="s2">: 1483229
+}"</span>
+</code></pre>
+<blockquote>
+<p>El comando previo retorna un JSON como el siguiente:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">32478646</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text/plain"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Quiero comprar un Molecular Disruption Device"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"who"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"replied_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-04T14:37:22.000+0000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mtype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-04T14:37:22.000+0000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"conversation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1483229</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"remote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a55ac7b8-bca7-4ab3-a2e0-e0579fa21cea"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"internal"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"person"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7089264</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Andrew Wiggin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"internal_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.letsta.lk/assets/default-avatar.gif"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Client"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"andrew.wiggin@letsta.lk"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"availability_status_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Publicación de un mensaje de texto plano a una conversación. El autor del mensaje es el cliente autenticado con la <em>API Key</em> especificada en el <em>header</em>.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.letsta.lk/api/v1/messages</code></p>
+<h3 id='body-parameters'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Propiedad</th>
+<th>Tipo</th>
+<th>¿Requerido?</th>
+<th>Valores permitidos</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>content</td>
+<td>string</td>
+<td>si</td>
+<td>-</td>
+<td>Contenido del mensaje.</td>
+</tr>
+<tr>
+<td>content_type</td>
+<td>string</td>
+<td>si</td>
+<td><code>text/plain</code></td>
+<td>Tipo de mensaje.</td>
+</tr>
+<tr>
+<td>remote_id</td>
+<td>object</td>
+<td>si</td>
+<td>-</td>
+<td>Identificador del mensaje creado por el consumidor de la <em>API</em>. Debe seguir el formato <a href="https://es.wikipedia.org/wiki/Identificador_%C3%BAnico_global">GUID</a>.</td>
+</tr>
+<tr>
+<td>conversation_id</td>
+<td>integer</td>
+<td>si</td>
+<td>-</td>
+<td>Id de conversación en donde se publicará el mensaje.</td>
+</tr>
+</tbody></table>
+
+<h3 id='codigos-de-respuesta'>Códigos de respuesta</h3>
+
+<table><thead>
+<tr>
+<th>Código</th>
+<th>Significado</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>Credenciales inválidas.</td>
+</tr>
+<tr>
+<td>200</td>
+<td>Operación ejecutada con éxito.</td>
+</tr>
+</tbody></table>
+<h2 id='crear-mensaje-con-archivo-adjunto'>Crear mensaje con archivo adjunto</h2><pre class="highlight shell tab-shell"><code>curl --location --request POST <span class="s2">"https://api.letsta.lk/api/v1/messages"</span> <span class="se">\</span>
+--header <span class="s2">"Authorization: Basic cUhRMlRuVXhqZldqdFVxTTlUbVI6WA=="</span> <span class="se">\</span>
+--form <span class="s2">"content=attachment"</span> <span class="se">\</span>
+--form <span class="s2">"content_type=image/png"</span> <span class="se">\</span>
+--form <span class="s2">"conversation_id=1484305"</span> <span class="se">\</span>
+--form <span class="s2">"remote_id=17bdd605-a88b-4fda-927a-dd739c7209a0"</span>
+</code></pre>
+<blockquote>
+<p>El comando previo retorna un JSON como el siguiente:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">32497317</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attachment"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"who"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"replied_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-04T17:17:09.000+0000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mtype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-04T17:17:09.000+0000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"conversation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1484305</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"remote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17bdd605-a88b-4fda-927a-dd739c7209a0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"internal"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"person"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7089264</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Andrew Wiggin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"internal_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.letsta.lk/assets/default-avatar.gif"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Client"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"andrew.wiggin@letsta.lk"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"availability_status_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Publicación de un mensaje con archivo adjunto. El autor del mensaje es el cliente autenticado con la <em>API Key</em> especificada en el <em>header</em>.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST https://api.letsta.lk/api/v1/messages</code></p>
+<h3 id='form-parameters'>Form Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Tipo</th>
+<th>¿Requerido?</th>
+<th>Valores permitidos</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>content</td>
+<td>string</td>
+<td>si</td>
+<td><code>attachment</code></td>
+<td>Tipo de mensaje.</td>
+</tr>
+<tr>
+<td>content_type</td>
+<td>string</td>
+<td>si</td>
+<td><a href="#valores-permitidos-de-content_type">Valores permitidos</a></td>
+<td>Tipo de archivo adjunto.</td>
+</tr>
+<tr>
+<td>media</td>
+<td>file</td>
+<td>si</td>
+<td>-</td>
+<td>Archivo adjunto.</td>
+</tr>
+<tr>
+<td>remote_id</td>
+<td>object</td>
+<td>si</td>
+<td>-</td>
+<td>Identificador del mensaje creado por el consumidor de la <em>API</em>. Debe seguir el formato <a href="https://es.wikipedia.org/wiki/Identificador_%C3%BAnico_global">GUID</a>.</td>
+</tr>
+</tbody></table>
+<h4 id='valores-permitidos-de-content_type'>Valores permitidos de <code>content_type</code></h4>
+<p>Los valores permitidos pueden estar restringidos por configuración de la organización y corresponden a un subconjunto de los siguientes:</p>
+
+<table><thead>
+<tr>
+<th>Content Type</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>application/csv</code></td>
+<td>Valores separados por coma (CSV)</td>
+</tr>
+<tr>
+<td><code>application/geojson</code></td>
+<td>Sistema de información geográfica</td>
+</tr>
+<tr>
+<td><code>application/msword</code></td>
+<td>Microsoft Word</td>
+</tr>
+<tr>
+<td><code>application/octet-stream</code></td>
+<td>Cualquier tipo de datos binarios</td>
+</tr>
+<tr>
+<td><code>application/pdf</code></td>
+<td>Adobe Portable Document Format (PDF)</td>
+</tr>
+<tr>
+<td><code>application/vnd.ms-excel</code></td>
+<td>Microsoft Excel</td>
+</tr>
+<tr>
+<td><code>application/vnd.ms-powerpoint</code></td>
+<td>Microsoft PowerPoint</td>
+</tr>
+<tr>
+<td><code>application/vnd.openxmlformats</code> <br> <code>-officedocument.presentationml.presentation</code></td>
+<td>Microsoft PowerPoint (PPTX)</td>
+</tr>
+<tr>
+<td><code>application/vnd.openxmlformats</code> <br> <code>-officedocument.spreadsheetml.sheet</code></td>
+<td>Microsoft Excel (XLSX)</td>
+</tr>
+<tr>
+<td><code>application/vnd.openxmlformats</code> <br> <code>-officedocument.wordprocessingml.document</code></td>
+<td>Microsoft Word (DOCX)</td>
+</tr>
+<tr>
+<td><code>audio/mp3</code></td>
+<td>MPEG-1 Audio Layer III o MPEG-2 Audio Layer III</td>
+</tr>
+<tr>
+<td><code>image/bmp</code></td>
+<td>Imagen BITMAP</td>
+</tr>
+<tr>
+<td><code>image/gif</code></td>
+<td>Graphics Interchange Format (GIF)</td>
+</tr>
+<tr>
+<td><code>image/jpeg</code></td>
+<td>Imágenes JPEG</td>
+</tr>
+<tr>
+<td><code>image/jpg</code></td>
+<td>Imágenes JPEG</td>
+</tr>
+<tr>
+<td><code>image/png</code></td>
+<td>Imágenes PNG</td>
+</tr>
+<tr>
+<td><code>image/tiff</code></td>
+<td>Formato de archivo de imagen etiquetado (TIFF)</td>
+</tr>
+<tr>
+<td><code>image/x-tiff</code></td>
+<td>Formato de archivo de imagen etiquetado (TIFF)</td>
+</tr>
+<tr>
+<td><code>text/comma-separated-values</code></td>
+<td>Valores separados por coma (CSV)</td>
+</tr>
+<tr>
+<td><code>text/csv</code></td>
+<td>Valores separados por coma (CSV)</td>
+</tr>
+<tr>
+<td><code>video/mov</code></td>
+<td>QuickTime</td>
+</tr>
+<tr>
+<td><code>video/mp4</code></td>
+<td>MPEG-4</td>
+</tr>
+<tr>
+<td><code>video/quicktime</code></td>
+<td>QuickTime</td>
+</tr>
+</tbody></table>
+
+<h3 id='codigos-de-respuesta'>Códigos de respuesta</h3>
+
+<table><thead>
+<tr>
+<th>Código</th>
 <th>Significado</th>
 </tr>
 </thead><tbody>
