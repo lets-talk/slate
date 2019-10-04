@@ -3,7 +3,7 @@
 
 ```shell
 curl --location --request POST "https://api.letsta.lk/api/v1/messages" \
---header "Authorization: Basic cUhRMlRuVXhqZldqdFVxTTlUbVI6WA==" \
+--header "Authorization: Basic {{encoded_api_key}}" \
 --header "Content-Type: application/json" \
 --data "{
   \"content\": \"Quiero comprar un Molecular Disruption Device\",
@@ -67,7 +67,7 @@ Publicación de un mensaje de texto plano a una conversación. El autor del mens
 
 ```shell
 curl --location --request POST "https://api.letsta.lk/api/v1/messages" \
---header "Authorization: Basic cUhRMlRuVXhqZldqdFVxTTlUbVI6WA==" \
+--header "Authorization: Basic {{encoded_api_key}}" \
 --form "content=attachment" \
 --form "content_type=image/png" \
 --form "conversation_id=1484305" \
@@ -153,3 +153,96 @@ Los valores permitidos pueden estar restringidos por configuración de la organi
 | `video/mp4`                                                                 | MPEG-4                                          |
 | `video/quicktime`                                                           | QuickTime                                       |
 <%= partial "includes/response_codes.md.erb" %>
+## Obtener mensajes de conversación
+
+```shell
+curl --location --request GET "https://api.letsta.lk/api/v1/messages?conversation_id=1484305&cursor[type]=some_after&cursor[location]=32496705&page=1&cursor[amount]=2" \
+--header "Authorization: Basic {{encoded_api_key}}"
+```
+
+> El comando previo retorna un JSON como el siguiente:
+
+```json
+[
+    {
+        "id": 32506061,
+        "subject": null,
+        "content": "kk",
+        "type": "NORMAL",
+        "created_at": "2019-10-04T19:04:32.000+0000",
+        "content_type": "text/plain",
+        "conversation_id": 1484305,
+        "remote_id": "ef55489a-cb1f-4bc4-8f91-23d201865670",
+        "internal": false,
+        "replied_on": "2019-10-04T19:04:32.000+0000",
+        "conversation_type_name": "normal",
+        "conversation_internal_issue": "hola",
+        "client_name": "Andrew Wiggin",
+        "client_avatar": "https://api.letsta.lk/assets/default-avatar.gif",
+        "conversation_status": "Open",
+        "person_type": "Client",
+        "person_id": 7089264,
+        "person": {
+            "id": 7089264,
+            "name": "Andrew Wiggin",
+            "internal_name": null,
+            "avatar": "https://api.letsta.lk/assets/default-avatar.gif",
+            "type": "Client",
+            "email": "andrew.wiggin@letsta.lk",
+            "active": true,
+            "description": null,
+            "role": null,
+            "availability_status_name": null,
+            "status_name": null
+        }
+    },
+    {
+        "id": 32505934,
+        "subject": null,
+        "content": "sd",
+        "type": "NORMAL",
+        "created_at": "2019-10-04T19:02:58.000+0000",
+        "content_type": "text/plain",
+        "conversation_id": 1484305,
+        "remote_id": "6aa8e7f3-389f-4117-a303-c631b3c4f27f",
+        "internal": false,
+        "replied_on": "2019-10-04T19:02:58.000+0000",
+        "conversation_type_name": "normal",
+        "conversation_internal_issue": "hola",
+        "client_name": "Andrew Wiggin",
+        "client_avatar": "https://api.letsta.lk/assets/default-avatar.gif",
+        "conversation_status": "Open",
+        "person_type": "Client",
+        "person_id": 7089264,
+        "person": {
+            "id": 7089264,
+            "name": "Andrew Wiggin",
+            "internal_name": null,
+            "avatar": "https://api.letsta.lk/assets/default-avatar.gif",
+            "type": "Client",
+            "email": "andrew.wiggin@letsta.lk",
+            "active": true,
+            "description": null,
+            "role": null,
+            "availability_status_name": null,
+            "status_name": null
+        }
+    }
+]
+```
+Obtención de los mensajes de una conversación.
+
+### HTTP Request
+
+`GET https://api.letsta.lk/api/v1/messages`
+
+### Query Parameters
+
+| Parámetro        | ¿Requerido?      | Valores permitidos                                      | Descripción                                                    |
+|------------------|------------------|---------------------------------------------------------|----------------------------------------------------------------|
+| conversation_id  | si               | -                                                       | Id de la conversación de los cuales se solicitan los mensajes. |
+| cursor[type]     | condicionalmente | [Valores permitidos](#valores-permitidos-de-cursortype) | Tipo de cursor a usar en la paginación.                        |
+| cursor[location] | condicionalmente | -                                                       | Identificador que indica a partir de que recurso se paginará.  |
+| cursor[amount]   | condicionalmente | -                                                       | Cantidad de recursos por página a listar.                      |
+
+#### Valores permitidos de cursor[type]
