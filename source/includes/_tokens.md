@@ -76,23 +76,22 @@ Este endpoint crea un cliente con los datos proveídos. Si el cliente existe pre
 
 `POST https://api.letsta.lk/api/v1/integration/auth/token`
 
-### Query Parameters
+### Body Parameters
 
 
-| Propiedad             | Tipo    | ¿Requerido? | Descripción                                                             |
-|-----------------------|---------|-------------|-------------------------------------------------------------------------|
-| email                 | string  | si          | Email del cliente.                                                      |
-| name                  | string  | si          | Nombre del cliente.                                                     |
-| [consumer](#consumer) | object  | si          | Objeto para autorizar la creación o obtención del cliente y sus datos.  |
-| organization_id       | integer | si          | Id de la organización.                                                  |
-
+| Propiedad             | Tipo    | ¿Requerido? | Descripción                                                            |
+|-----------------------|---------|-------------|------------------------------------------------------------------------|
+| email                 | string  | si          | Correo del cliente.                                                    |
+| name                  | string  | si          | Nombre del cliente.                                                    |
+| [consumer](#consumer) | object  | si          | Objeto para autorizar la creación o obtención del cliente y sus datos. |
+| organization_id       | integer | si          | Id de la organización.                                                 |
 
 #### consumer
 
 | Propiedad | Tipo   | ¿Requerido? | Descripción                                                                  |
 |-----------|--------|-------------|------------------------------------------------------------------------------|
 | key       | string | si          | Consumer key para autorizar la creación o obtención del cliente y sus datos. |
-| token     | string | si          | Consumer key para autorizar la creación o obtención del cliente y sus datos. |
+| token     | string | si          | Consumer token para autorizar la creación o obtención del cliente y sus datos. |
 
 
 ### Response codes
