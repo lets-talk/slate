@@ -153,7 +153,7 @@ curl --location --request POST "https://api.letsta.lk/api/v1/conversations" \
 }
 ```
 
-Este endpoint inicia una conversación con los datos proveidos. El autor del mensaje y la conversación es el cliente autenticado con la *API Key* especificada en el *header*.
+Creación de una una conversación. El autor del mensaje y la conversación es el cliente autenticado con la *API Key* especificada en el *header*.
 
 
 ### HTTP Request
@@ -172,16 +172,11 @@ Este endpoint inicia una conversación con los datos proveidos. El autor del men
 
 #### message
 
-| Propiedad    | Tipo   | ¿Requerido? | Descripción                                                                                                                                                  | Valor        |
+| Propiedad    | Tipo   | ¿Requerido? | Descripción                                                                                                                                                  | Valor aceptado        |
 |--------------|--------|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|
 | content      | string | si          | contenido del mensage                                                                                                                                        | -            |
 | content_type | string | si          | tipo de mensage                                                                                                                                              | `text/plain` |
 | remote_id    | string | si          | Identificador del mensaje creado por el consumidor de la *API*. Debe seguir el formato [GUID](https://es.wikipedia.org/wiki/Identificador_%C3%BAnico_global) | -            |
 
 
-### Response codes
-
-| Código de error | Significado                    |
-|-----------------|--------------------------------|
-| 401             | Credenciales inválidas.        |
-| 200             | Operación ejecutada con éxito. |
+<%= partial "includes/response_codes.md.erb" %>

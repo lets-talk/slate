@@ -70,7 +70,7 @@ curl --location --request POST "https://api.letsta.lk/api/v1/integration/auth/to
 }
 ```
 
-Este endpoint crea un cliente con los datos proveídos. Si el cliente existe previamente se retornan sus datos.
+Creación de un **usuario/cliente** con obtención de token y datos asociados. Si el cliente existe previamente se retornan sus datos existentes.
 
 ### HTTP Request
 
@@ -94,9 +94,4 @@ Este endpoint crea un cliente con los datos proveídos. Si el cliente existe pre
 | token     | string | si          | Consumer token para autorizar la creación o obtención del cliente y sus datos. |
 
 
-### Response codes
-
-| Código de error | Significado                    |
-|-----------------|--------------------------------|
-| 401             | Credenciales inválidas.        |
-| 200             | Operación ejecutada con éxito. |
+<%= partial "includes/response_codes.md.erb" %>

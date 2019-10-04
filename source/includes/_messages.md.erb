@@ -1,0 +1,155 @@
+# Mensajes
+## Crear mensaje de texto plano
+
+```shell
+curl --location --request POST "https://api.letsta.lk/api/v1/messages" \
+--header "Authorization: Basic cUhRMlRuVXhqZldqdFVxTTlUbVI6WA==" \
+--header "Content-Type: application/json" \
+--data "{
+  \"content\": \"Quiero comprar un Molecular Disruption Device\",
+  \"content_type\": \"text/plain\",
+  \"remote_id\": \"a55ac7b8-bca7-4ab3-a2e0-e0579fa21cea\",
+  \"conversation_id\": 1483229
+}"
+```
+> El comando previo retorna un JSON como el siguiente:
+
+```json
+{
+    "id": 32478646,
+    "content_type": "text/plain",
+    "content": "Quiero comprar un Molecular Disruption Device",
+    "who": "client",
+    "replied_on": "2019-10-04T14:37:22.000+0000",
+    "mtype": "NORMAL",
+    "subject": null,
+    "created_at": "2019-10-04T14:37:22.000+0000",
+    "conversation_id": 1483229,
+    "remote_id": "a55ac7b8-bca7-4ab3-a2e0-e0579fa21cea",
+    "internal": false,
+    "type": "NORMAL",
+    "person": {
+        "id": 7089264,
+        "name": "Andrew Wiggin",
+        "internal_name": null,
+        "avatar": "https://api.letsta.lk/assets/default-avatar.gif",
+        "type": "Client",
+        "email": "andrew.wiggin@letsta.lk",
+        "active": true,
+        "description": null,
+        "role": null,
+        "availability_status_name": null,
+        "status_name": null
+    }
+}
+```
+
+Publicación de un mensaje de texto plano a una conversación. El autor del mensaje es el cliente autenticado con la *API Key* especificada en el *header*.
+
+### HTTP Request
+
+`POST https://api.letsta.lk/api/v1/messages`
+
+
+### Body Parameters
+
+
+| Propiedad       | Tipo    | ¿Requerido? | Valores permitidos | Descripción                                                                                                                                                   |
+|-----------------|---------|-------------|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| content         | string  | si          | -                  | Contenido del mensaje.                                                                                                                                        |
+| content_type    | string  | si          | `text/plain`       | Tipo de mensaje.                                                                                                                                              |
+| remote_id       | object  | si          | -                  | Identificador del mensaje creado por el consumidor de la *API*. Debe seguir el formato [GUID](https://es.wikipedia.org/wiki/Identificador_%C3%BAnico_global). |
+| conversation_id | integer | si          | -                  | Id de conversación en donde se publicará el mensaje.                                                                                                          |
+
+<%= partial "includes/response_codes.md.erb" %>
+
+## Crear mensaje con archivo adjunto
+
+```shell
+curl --location --request POST "https://api.letsta.lk/api/v1/messages" \
+--header "Authorization: Basic cUhRMlRuVXhqZldqdFVxTTlUbVI6WA==" \
+--form "content=attachment" \
+--form "content_type=image/png" \
+--form "conversation_id=1484305" \
+--form "remote_id=17bdd605-a88b-4fda-927a-dd739c7209a0"
+```
+> El comando previo retorna un JSON como el siguiente:
+
+```json
+{
+    "id": 32497317,
+    "content_type": "image/png",
+    "content": "attachment",
+    "who": "client",
+    "replied_on": "2019-10-04T17:17:09.000+0000",
+    "mtype": "NORMAL",
+    "subject": null,
+    "created_at": "2019-10-04T17:17:09.000+0000",
+    "conversation_id": 1484305,
+    "remote_id": "17bdd605-a88b-4fda-927a-dd739c7209a0",
+    "internal": false,
+    "type": "NORMAL",
+    "person": {
+        "id": 7089264,
+        "name": "Andrew Wiggin",
+        "internal_name": null,
+        "avatar": "https://api.letsta.lk/assets/default-avatar.gif",
+        "type": "Client",
+        "email": "andrew.wiggin@letsta.lk",
+        "active": true,
+        "description": null,
+        "role": null,
+        "availability_status_name": null,
+        "status_name": null
+    }
+}
+```
+
+Publicación de un mensaje con archivo adjunto. El autor del mensaje es el cliente autenticado con la *API Key* especificada en el *header*.
+
+### HTTP Request
+
+`POST https://api.letsta.lk/api/v1/messages`
+
+
+### Form Parameters
+
+
+| Parameter    | Tipo   | ¿Requerido? | Valores permitidos                   | Descripción                                                                                                                                                   |
+|--------------|--------|-------------|--------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| content      | string | si          | `attachment`                         | Tipo de mensaje.                                                                                                                                              |
+| content_type | string | si          | [Valores permitidos](#valores-permitidos-de-content_type) | Tipo de archivo adjunto.                                                                                                                                      |
+| media        | file   | si          | -                                    | Archivo adjunto.                                                                                                                                              |
+| remote_id    | object | si          | -                                    | Identificador del mensaje creado por el consumidor de la *API*. Debe seguir el formato [GUID](https://es.wikipedia.org/wiki/Identificador_%C3%BAnico_global). |
+
+
+#### Valores permitidos de `content_type`
+
+Los valores permitidos pueden estar restringidos por configuración de la organización y corresponden a un subconjunto de los siguientes:
+
+| Content Type                                                                | Descripción                                     |
+|-----------------------------------------------------------------------------|-------------------------------------------------|
+| `application/csv`                                                           | Valores separados por coma (CSV)                |
+| `application/geojson`                                                       | Sistema de información geográfica               |
+| `application/msword`                                                        | Microsoft Word                                  |
+| `application/octet-stream`                                                  | Cualquier tipo de datos binarios                |
+| `application/pdf`                                                           | Adobe Portable Document Format (PDF)            |
+| `application/vnd.ms-excel`                                                  | Microsoft Excel                                 |
+| `application/vnd.ms-powerpoint`                                             | Microsoft PowerPoint                            |
+| `application/vnd.openxmlformats` <br> `-officedocument.presentationml.presentation` | Microsoft PowerPoint (PPTX)                     |
+| `application/vnd.openxmlformats` <br> `-officedocument.spreadsheetml.sheet`         | Microsoft Excel (XLSX)                          |
+| `application/vnd.openxmlformats` <br> `-officedocument.wordprocessingml.document`   | Microsoft Word (DOCX)                           |
+| `audio/mp3`                                                                 | MPEG-1 Audio Layer III o MPEG-2 Audio Layer III |
+| `image/bmp`                                                                 | Imagen BITMAP                                   |
+| `image/gif`                                                                 | Graphics Interchange Format (GIF)               |
+| `image/jpeg`                                                                | Imágenes JPEG                                   |
+| `image/jpg`                                                                 | Imágenes JPEG                                   |
+| `image/png`                                                                 | Imágenes PNG                                    |
+| `image/tiff`                                                                | Formato de archivo de imagen etiquetado (TIFF)  |
+| `image/x-tiff`                                                              | Formato de archivo de imagen etiquetado (TIFF)  |
+| `text/comma-separated-values`                                               | Valores separados por coma (CSV)                |
+| `text/csv`                                                                  | Valores separados por coma (CSV)                |
+| `video/mov`                                                                 | QuickTime                                       |
+| `video/mp4`                                                                 | MPEG-4                                          |
+| `video/quicktime`                                                           | QuickTime                                       |
+<%= partial "includes/response_codes.md.erb" %>
