@@ -857,7 +857,7 @@ Este <i>endpoint</i> solo puede ser utilizado por el tipo <strong>usuario/agente
 <tr>
 <td>id</td>
 <td>si</td>
-<td>Número de la conversación a cerrar.</td>
+<td>Identificador de la conversación a cerrar.</td>
 </tr>
 </tbody></table>
 <h3 id='body-parameters-2'>Body Parameters</h3>
@@ -1452,6 +1452,10 @@ Este <i>endpoint</i> puede ser utilizado tanto por <strong>usuario/cliente</stro
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Adición de metadata en una conversación especificada.</p>
+
+<aside class="success">
+Este <i>endpoint</i> puede ser utilizado tanto por <strong>usuario/cliente</strong> como por <strong>usuario/agente</strong>.
+</aside>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>PUT https://api.letsta.lk/api/v1/conversations/:id/metadata</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -1465,7 +1469,7 @@ Este <i>endpoint</i> puede ser utilizado tanto por <strong>usuario/cliente</stro
 <tr>
 <td>id</td>
 <td>si</td>
-<td>Número de la conversación dónde se adicionará la metadata</td>
+<td>Identificador de la conversación dónde se adicionará la metadata.</td>
 </tr>
 </tbody></table>
 <h3 id='body-parameters'>Body Parameters</h3>
