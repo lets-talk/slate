@@ -27,15 +27,19 @@ curl --location --request POST "https://api.letsta.lk/api/v1/conversations/{{con
 
 Adición de metadata en una conversación especificada.
 
+<aside class="success">
+Este <i>endpoint</i> puede ser utilizado tanto por <strong>usuario/cliente</strong> como por <strong>usuario/agente</strong>.
+</aside>
+
 ### HTTP Request
 
 `PUT https://api.letsta.lk/api/v1/conversations/:id/metadata`
 
 ### Query Parameters
 
-| Parámetro | ¿Requerido? | Descripción                         |
-|-----------|-------------|-------------------------------------|
-| id        | si          | Número de la conversación dónde se adicionará la metadata |
+| Parámetro | ¿Requerido? | Descripción                                                       |
+|-----------|-------------|-------------------------------------------------------------------|
+| id        | si          | Identificador de la conversación dónde se adicionará la metadata. |
 
 ### Body Parameters
 

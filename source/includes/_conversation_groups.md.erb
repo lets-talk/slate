@@ -39,12 +39,11 @@ Este <i>endpoint</i> solo puede ser utilizado por el tipo <strong>usuario/agente
 
 ### Body Parameters
 
-| Propiedad           | Tipo    | ¿Requerido? | Descripción                                                          |
-|---------------------|---------|-------------|----------------------------------------------------------------------|
-| group_id            | integer | si          |  Id del grupo que recibirá la conversación. Este Id debe solicitarse a soporte para cada caso|
-| conversation_id          | integer | si          | Id del inquiry de la conversación                                    |
-| transfer            | bool | no          | Al indicar `true` el sistema eliminará la memebresía actual del usuario que realiza la asignación. |
-
+| Propiedad       | Tipo    | ¿Requerido? | Descripción                                                                                        |
+|-----------------|---------|-------------|----------------------------------------------------------------------------------------------------|
+| group_id        | integer | si          | Id del grupo que recibirá la conversación. Este Id debe solicitarse a soporte para cada caso       |
+| conversation_id | integer | si          | Id del inquiry de la conversación                                                                  |
+| transfer        | bool    | no          | Al indicar `true` el sistema eliminará la memebresía actual del usuario que realiza la asignación. |
 
 
 <%= partial "includes/response_codes.md.erb" %>
