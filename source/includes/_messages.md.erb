@@ -44,7 +44,11 @@ curl --location --request POST "https://api.letsta.lk/api/v1/messages" \
 }
 ```
 
-Publicación de un mensaje de texto plano a una conversación. El autor del mensaje es el cliente autenticado con la *API Key* especificada en el *header*.
+Publicación de un mensaje de texto plano a una conversación. El autor del mensaje es el usuario autenticado con la *API Key* especificada en el *header*.
+
+<aside class="success">
+Este <i>endpoint</i> puede ser utilizado tanto por <strong>usuario/cliente</strong> como por <strong>usuario/agente</strong>.
+</aside>
 
 ### HTTP Request
 
@@ -106,6 +110,10 @@ curl --location --request POST "https://api.letsta.lk/api/v1/messages" \
 ```
 
 Publicación de un mensaje con archivo adjunto. El autor del mensaje es el cliente autenticado con la *API Key* especificada en el *header*.
+
+<aside class="success">
+Este <i>endpoint</i> solo puede ser utilizado por el tipo <strong>usuario/cliente</strong> y <strong>usuario/agente</strong>.
+</aside>
 
 ### HTTP Request
 
@@ -232,6 +240,10 @@ curl --location --request GET "https://api.letsta.lk/api/v1/messages?conversatio
 ```
 Obtención de los mensajes de una conversación.
 
+<aside class="success">
+Este <i>endpoint</i> puede ser utilizado tanto por <strong>usuario/cliente</strong> como por <strong>usuario/agente</strong>.
+</aside>
+
 ### HTTP Request
 
 `GET https://api.letsta.lk/api/v1/messages`
@@ -241,8 +253,15 @@ Obtención de los mensajes de una conversación.
 | Parámetro        | ¿Requerido?      | Valores permitidos                                      | Descripción                                                    |
 |------------------|------------------|---------------------------------------------------------|----------------------------------------------------------------|
 | conversation_id  | si               | -                                                       | Id de la conversación de los cuales se solicitan los mensajes. |
-| cursor[type]     | condicionalmente | [Valores permitidos](#valores-permitidos-de-cursortype) | Tipo de cursor a usar en la paginación.                        |
+| cursor[type]     | condicionalmente | [Valores permitidos](#valores-permitidos-de-cursor-type) | Tipo de cursor a usar en la paginación.                        |
 | cursor[location] | condicionalmente | -                                                       | Identificador que indica a partir de que recurso se paginará.  |
 | cursor[amount]   | condicionalmente | -                                                       | Cantidad de recursos por página a listar.                      |
 
 #### Valores permitidos de cursor[type]
+
+| Valor | Descripción|
+|--|--|
+| `some_after` | Retorna la cantidad de elementos especificada por `cursor[amount]`  **después** de `cursor[location]`. |
+| `some_before` | Retorna la cantidad de elementos especificada por `cursor[amount]`  **antes** de `cursor[location]`. |
+
+<%= partial "includes/response_codes.md.erb" %>

@@ -1,0 +1,44 @@
+# Metadata
+## Agregar metadata a una conversación
+
+```shell
+curl --location --request POST "https://api.letsta.lk/api/v1/conversations/{{conversation_id}}/metadata" \
+--header "Authorization: Basic {{encoded_api_key}}" \
+--header "Content-Type: application/json" \
+--data "{
+    \"country\":\"Chile\",
+    \"IQ\": 160,
+    \"uno\":\"1\",
+    \"dos\":\"2\"
+}
+"
+```
+
+> El comando previo retorna un JSON como el siguiente:
+
+```json
+{
+    "country": "Chile",
+    "IQ": 160,
+    "uno": "1",
+    "dos": "2"
+}
+```
+
+Adición de metadata en una conversación especificada.
+
+### HTTP Request
+
+`PUT https://api.letsta.lk/api/v1/conversations/:id/metadata`
+
+### Query Parameters
+
+| Parámetro | ¿Requerido? | Descripción                         |
+|-----------|-------------|-------------------------------------|
+| id        | si          | Número de la conversación dónde se adicionará la metadata |
+
+### Body Parameters
+
+Cualquier objeto JSON que se deseé agregar como metadata
+
+<%= partial "includes/response_codes.md.erb" %>

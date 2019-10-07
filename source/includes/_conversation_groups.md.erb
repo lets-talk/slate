@@ -4,7 +4,7 @@
 curl -X POST \
   https://api.letsta.lk/api/v1/conversations/{conversation_id}/conversation_groups \
   -H 'Accept: application/json, text/plain, */*' \
-  -H "Authorization: Basic {{encoded_api_key}}" \
+  -H "Authorization: Basic {{encoded_agent_api_key}}" \
   -H 'Content-Type: application/json;charset=UTF-8' \
   -d '{"conversationId":"{conversation_id}","{group_id}":{group_id},"transfer":false}'
 ```
@@ -29,6 +29,9 @@ Al asignar un grupo a una conversación es opcional que el usuario que realiza l
 Tener en consideración que al asignar a un grupo la forma en que los miembros del dicho grupo de unen a la conversación depende de sus propias reglas y no de cómo se le asigne.
 Un mensaje tipo `SYSTEM` es agregado indicando quién realizó la acción de asignación.
 
+<aside class="success">
+Este <i>endpoint</i> solo puede ser utilizado por el tipo <strong>usuario/agente</strong>
+</aside>.
 
 ### HTTP Request
 
