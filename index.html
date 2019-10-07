@@ -238,6 +238,9 @@
                   <li>
                     <a href="#crear-conversacion" class="toc-h2 toc-link" data-title="Crear conversación">Crear conversación</a>
                   </li>
+                  <li>
+                    <a href="#cerrar-conversacion" class="toc-h2 toc-link" data-title="Cerrar conversación">Cerrar conversación</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -257,11 +260,22 @@
                   <li>
                     <a href="#crear-mensaje-con-archivo-adjunto" class="toc-h2 toc-link" data-title="Crear mensaje con archivo adjunto">Crear mensaje con archivo adjunto</a>
                   </li>
+                  <li>
+                    <a href="#obtener-mensajes-de-conversacion" class="toc-h2 toc-link" data-title="Obtener mensajes de conversación">Obtener mensajes de conversación</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#metadata" class="toc-h1 toc-link" data-title="Metadata">Metadata</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#agregar-metadata-a-una-conversacion" class="toc-h2 toc-link" data-title="Agregar metadata a una conversación">Agregar metadata a una conversación</a>
+                  </li>
               </ul>
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='mailto:soporte@ltmessenger.com'>¿Preguntas?</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -305,143 +319,9 @@ curl <span class="s2">"api_endpoint_here"</span>
 
 <p><code>Authorization: encoded_api_key==</code></p>
 
-<aside class="notice">
-Debes reemplazar <code>encoded_api_key== </code> por tu <i>API Key</i>, con los caracteres <code>`:X`</code> concatenados al final y codificada en `base64`
-</aside>
-
-<!-- # Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete -->
+<p><aside class="notice">
+Debes reemplazar <code>encoded_api_key== </code> por tu <i>API Key</i>, con los caracteres <code><code>:X</code></code> concatenados al final y codificada en <code>base64</code>
+</aside>.</p>
 <h1 id='tokens'>Tokens</h1><h2 id='crear-obtener-un-cliente'>Crear/obtener un cliente</h2><pre class="highlight shell tab-shell"><code>curl --location --request POST <span class="s2">"https://api.letsta.lk/api/v1/integration/auth/token"</span> <span class="se">\</span>
 --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 --data <span class="s2">"{
@@ -587,7 +467,7 @@ ID | The ID of the kitten to delete -->
 </tbody></table>
 <h1 id='conversaciones'>Conversaciones</h1><h2 id='crear-conversacion'>Crear conversación</h2><pre class="highlight shell tab-shell"><code>curl --location --request POST <span class="s2">"https://api.letsta.lk/api/v1/conversations"</span> <span class="se">\</span>
 --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
---header <span class="s2">"Authorization: Basic {{encoded_api_key}}"</span> <span class="se">\</span>
+--header <span class="s2">"Authorization: Basic {{encoded_client_api_key}}"</span> <span class="se">\</span>
 --data <span class="s2">"{
   </span><span class="se">\"</span><span class="s2">issue</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Quiero un crédito para combatir a los fórmicos</span><span class="se">\"</span><span class="s2">,
   </span><span class="se">\"</span><span class="s2">message</span><span class="se">\"</span><span class="s2">: {
@@ -736,6 +616,10 @@ ID | The ID of the kitten to delete -->
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Creación de una una conversación. El autor del mensaje y la conversación es el cliente autenticado con la <em>API Key</em> especificada en el <em>header</em>.</p>
+
+<aside class="success">
+Este <i>endpoint</i> solo puede ser utilizado por el tipo <strong>usuario/cliente</strong>.
+</aside>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://api.letsta.lk/api/v1/conversations</code></p>
 <h3 id='body-parameters'>Body Parameters</h3>
@@ -828,10 +712,194 @@ ID | The ID of the kitten to delete -->
 <td>Operación ejecutada con éxito.</td>
 </tr>
 </tbody></table>
+<h2 id='cerrar-conversacion'>Cerrar conversación</h2><pre class="highlight shell tab-shell"><code>curl --location --request PUT <span class="s2">"https://pingpong.letsta.lk/api/v1/conversations/1483229"</span> <span class="se">\</span>
+--header <span class="s2">"Authorization: Basic {{encoded_agent_api_key}}"</span> <span class="se">\</span>
+--header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+--data <span class="s2">"{</span><span class="se">\"</span><span class="s2">status</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Closed</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+<blockquote>
+<p>El comando previo retorna un JSON como el siguiente:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1483229</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"issue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"--"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"internal_issue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"--"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Closed"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-04T12:48:05.000+0000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"involved_persons"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4322</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Admin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"internal_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/prod.letsta.lk/users/avatars/ded11e3d2a9ff29e8c3fc50ec4180c6b3fb7eff7/thumb.gif"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin.pingpong@letsta.lk"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"availability_status_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"online"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7089264</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Andrew Wiggin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"internal_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/prod.letsta.lk/clients/avatars/1015396405130a35463fe654b4982c17e5d9b0a9/thumb.gif"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Client"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"andrew.wiggin@letsta.lk"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"availability_status_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"organization_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">171</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uhh1XE2XaXrf7dSyC3l8AQ"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updater_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updater_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4322</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"changes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"geo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"neutral"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rate_class"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"inquiry_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sales"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tag_list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"last_message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">32584874</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text/plain"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"who"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"replied_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-07T15:04:39.000+0000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mtype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SYSTEM"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-07T15:04:39.000+0000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"conversation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1483229</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remote_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"internal"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SYSTEM"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"person"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4322</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Admin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"internal_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.letsta.lk/assets/default-avatar.gif"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin.pingpong@letsta.lk"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"availability_status_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"online"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"unread_messages"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ctype"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Andrew Wiggin"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rate_type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"min"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"max"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Binary"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"granted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"project_list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"test"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"subscribe_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DBKaBGqcnjPhwFwaaW5L"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"greeting"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hola.. soy Super Ventas!!! le vendo hielo a los esquimales"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"extra_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="s2">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-07T15:04:39.000+0000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"client"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7089264</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Andrew Wiggin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"andrew.wiggin@letsta.lk"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-03T19:10:15.000+0000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.letsta.lk/assets/default-avatar.gif"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"client_key_values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10915064</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Andrew Wiggin"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10915065</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"andrew.wiggin@letsta.lk"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"avatar_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.letsta.lk/assets/default-avatar.gif"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"confirmed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"guest"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Client"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Cierre de una conversación.</p>
+
+<aside class="success">
+Este <i>endpoint</i> solo puede ser utilizado por el tipo <strong>usuario/agente</strong>.
+</aside>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>PUT https://pingpong.letsta.lk/api/v1/conversations/:id</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>¿Requerido?</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>si</td>
+<td>Número de la conversación a cerrar.</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters-2'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Propiedad</th>
+<th>Tipo</th>
+<th>¿Requerido?</th>
+<th>Valores permitidos</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>si</td>
+<td><code>Closed</code></td>
+<td>Estado a actualizar de la conversación.</td>
+</tr>
+</tbody></table>
+
+<h3 id='codigos-de-respuesta'>Códigos de respuesta</h3>
+
+<table><thead>
+<tr>
+<th>Código</th>
+<th>Significado</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>Credenciales inválidas.</td>
+</tr>
+<tr>
+<td>200</td>
+<td>Operación ejecutada con éxito.</td>
+</tr>
+</tbody></table>
 <h1 id='grupo-de-conversaciones'>Grupo de Conversaciones</h1><h2 id='asignar-grupo-a-conversacion'>Asignar grupo a conversación.</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
   https://api.letsta.lk/api/v1/conversations/<span class="o">{</span>conversation_id<span class="o">}</span>/conversation_groups <span class="se">\</span>
   -H <span class="s1">'Accept: application/json, text/plain, */*'</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Basic {{encoded_api_key}}"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Basic {{encoded_agent_api_key}}"</span> <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json;charset=UTF-8'</span> <span class="se">\</span>
   -d <span class="s1">'{"conversationId":"{conversation_id}","{group_id}":{group_id},"transfer":false}'</span>
 </code></pre>
@@ -853,6 +921,10 @@ ID | The ID of the kitten to delete -->
 <p>Al asignar un grupo a una conversación es opcional que el usuario que realiza la acción abandone la conversación, para esto el parámetro <code>transfer</code> debe ir <code>true</code>.
 Tener en consideración que al asignar a un grupo la forma en que los miembros del dicho grupo de unen a la conversación depende de sus propias reglas y no de cómo se le asigne.
 Un mensaje tipo <code>SYSTEM</code> es agregado indicando quién realizó la acción de asignación.</p>
+
+<p><aside class="success">
+Este <i>endpoint</i> solo puede ser utilizado por el tipo <strong>usuario/agente</strong>
+</aside>.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://api.letsta.lk/api/v1/conversations/{conversation_id}/conversation_groups</code></p>
 <h3 id='body-parameters'>Body Parameters</h3>
@@ -902,7 +974,7 @@ Un mensaje tipo <code>SYSTEM</code> es agregado indicando quién realizó la acc
 </tr>
 </tbody></table>
 <h1 id='mensajes'>Mensajes</h1><h2 id='crear-mensaje-de-texto-plano'>Crear mensaje de texto plano</h2><pre class="highlight shell tab-shell"><code>curl --location --request POST <span class="s2">"https://api.letsta.lk/api/v1/messages"</span> <span class="se">\</span>
---header <span class="s2">"Authorization: Basic cUhRMlRuVXhqZldqdFVxTTlUbVI6WA=="</span> <span class="se">\</span>
+--header <span class="s2">"Authorization: Basic {{encoded_api_key}}"</span> <span class="se">\</span>
 --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 --data <span class="s2">"{
   </span><span class="se">\"</span><span class="s2">content</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Quiero comprar un Molecular Disruption Device</span><span class="se">\"</span><span class="s2">,
@@ -942,7 +1014,11 @@ Un mensaje tipo <code>SYSTEM</code> es agregado indicando quién realizó la acc
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Publicación de un mensaje de texto plano a una conversación. El autor del mensaje es el cliente autenticado con la <em>API Key</em> especificada en el <em>header</em>.</p>
+<p>Publicación de un mensaje de texto plano a una conversación. El autor del mensaje es el usuario autenticado con la <em>API Key</em> especificada en el <em>header</em>.</p>
+
+<aside class="success">
+Este <i>endpoint</i> puede ser utilizado tanto por <strong>usuario/cliente</strong> como por <strong>usuario/agente</strong>.
+</aside>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://api.letsta.lk/api/v1/messages</code></p>
 <h3 id='body-parameters'>Body Parameters</h3>
@@ -1003,7 +1079,7 @@ Un mensaje tipo <code>SYSTEM</code> es agregado indicando quién realizó la acc
 </tr>
 </tbody></table>
 <h2 id='crear-mensaje-con-archivo-adjunto'>Crear mensaje con archivo adjunto</h2><pre class="highlight shell tab-shell"><code>curl --location --request POST <span class="s2">"https://api.letsta.lk/api/v1/messages"</span> <span class="se">\</span>
---header <span class="s2">"Authorization: Basic cUhRMlRuVXhqZldqdFVxTTlUbVI6WA=="</span> <span class="se">\</span>
+--header <span class="s2">"Authorization: Basic {{encoded_api_key}}"</span> <span class="se">\</span>
 --form <span class="s2">"content=attachment"</span> <span class="se">\</span>
 --form <span class="s2">"content_type=image/png"</span> <span class="se">\</span>
 --form <span class="s2">"conversation_id=1484305"</span> <span class="se">\</span>
@@ -1041,6 +1117,10 @@ Un mensaje tipo <code>SYSTEM</code> es agregado indicando quién realizó la acc
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Publicación de un mensaje con archivo adjunto. El autor del mensaje es el cliente autenticado con la <em>API Key</em> especificada en el <em>header</em>.</p>
+
+<aside class="success">
+Este <i>endpoint</i> solo puede ser utilizado por el tipo <strong>usuario/cliente</strong> y <strong>usuario/agente</strong>.
+</aside>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST https://api.letsta.lk/api/v1/messages</code></p>
 <h3 id='form-parameters'>Form Parameters</h3>
@@ -1184,6 +1264,212 @@ Un mensaje tipo <code>SYSTEM</code> es agregado indicando quién realizó la acc
 <td>QuickTime</td>
 </tr>
 </tbody></table>
+
+<h3 id='codigos-de-respuesta'>Códigos de respuesta</h3>
+
+<table><thead>
+<tr>
+<th>Código</th>
+<th>Significado</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>Credenciales inválidas.</td>
+</tr>
+<tr>
+<td>200</td>
+<td>Operación ejecutada con éxito.</td>
+</tr>
+</tbody></table>
+<h2 id='obtener-mensajes-de-conversacion'>Obtener mensajes de conversación</h2><pre class="highlight shell tab-shell"><code>curl --location --request GET <span class="s2">"https://api.letsta.lk/api/v1/messages?conversation_id=1484305&amp;cursor[type]=some_after&amp;cursor[location]=32496705&amp;page=1&amp;cursor[amount]=2"</span> <span class="se">\</span>
+--header <span class="s2">"Authorization: Basic {{encoded_api_key}}"</span>
+</code></pre>
+<blockquote>
+<p>El comando previo retorna un JSON como el siguiente:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">32506061</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kk"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-04T19:04:32.000+0000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text/plain"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"conversation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1484305</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ef55489a-cb1f-4bc4-8f91-23d201865670"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"internal"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"replied_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-04T19:04:32.000+0000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"conversation_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"conversation_internal_issue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hola"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"client_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Andrew Wiggin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"client_avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.letsta.lk/assets/default-avatar.gif"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"conversation_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Open"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"person_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Client"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"person_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7089264</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"person"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7089264</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Andrew Wiggin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"internal_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.letsta.lk/assets/default-avatar.gif"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Client"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"andrew.wiggin@letsta.lk"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"availability_status_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">32505934</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sd"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-04T19:02:58.000+0000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text/plain"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"conversation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1484305</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6aa8e7f3-389f-4117-a303-c631b3c4f27f"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"internal"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"replied_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-04T19:02:58.000+0000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"conversation_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"conversation_internal_issue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hola"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"client_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Andrew Wiggin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"client_avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.letsta.lk/assets/default-avatar.gif"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"conversation_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Open"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"person_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Client"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"person_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7089264</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"person"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7089264</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Andrew Wiggin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"internal_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.letsta.lk/assets/default-avatar.gif"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Client"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"andrew.wiggin@letsta.lk"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"availability_status_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Obtención de los mensajes de una conversación.</p>
+
+<aside class="success">
+Este <i>endpoint</i> puede ser utilizado tanto por <strong>usuario/cliente</strong> como por <strong>usuario/agente</strong>.
+</aside>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET https://api.letsta.lk/api/v1/messages</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>¿Requerido?</th>
+<th>Valores permitidos</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>conversation_id</td>
+<td>si</td>
+<td>-</td>
+<td>Id de la conversación de los cuales se solicitan los mensajes.</td>
+</tr>
+<tr>
+<td>cursor[type]</td>
+<td>condicionalmente</td>
+<td><a href="#valores-permitidos-de-cursor-type">Valores permitidos</a></td>
+<td>Tipo de cursor a usar en la paginación.</td>
+</tr>
+<tr>
+<td>cursor[location]</td>
+<td>condicionalmente</td>
+<td>-</td>
+<td>Identificador que indica a partir de que recurso se paginará.</td>
+</tr>
+<tr>
+<td>cursor[amount]</td>
+<td>condicionalmente</td>
+<td>-</td>
+<td>Cantidad de recursos por página a listar.</td>
+</tr>
+</tbody></table>
+<h4 id='valores-permitidos-de-cursor-type'>Valores permitidos de cursor[type]</h4>
+<table><thead>
+<tr>
+<th>Valor</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>some_after</code></td>
+<td>Retorna la cantidad de elementos especificada por <code>cursor[amount]</code>  <strong>después</strong> de <code>cursor[location]</code>.</td>
+</tr>
+<tr>
+<td><code>some_before</code></td>
+<td>Retorna la cantidad de elementos especificada por <code>cursor[amount]</code>  <strong>antes</strong> de <code>cursor[location]</code>.</td>
+</tr>
+</tbody></table>
+
+<h3 id='codigos-de-respuesta'>Códigos de respuesta</h3>
+
+<table><thead>
+<tr>
+<th>Código</th>
+<th>Significado</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>Credenciales inválidas.</td>
+</tr>
+<tr>
+<td>200</td>
+<td>Operación ejecutada con éxito.</td>
+</tr>
+</tbody></table>
+<h1 id='metadata'>Metadata</h1><h2 id='agregar-metadata-a-una-conversacion'>Agregar metadata a una conversación</h2><pre class="highlight shell tab-shell"><code>curl --location --request POST <span class="s2">"https://api.letsta.lk/api/v1/conversations/{{conversation_id}}/metadata"</span> <span class="se">\</span>
+--header <span class="s2">"Authorization: Basic {{encoded_api_key}}"</span> <span class="se">\</span>
+--header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+--data <span class="s2">"{
+    </span><span class="se">\"</span><span class="s2">country</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Chile</span><span class="se">\"</span><span class="s2">,
+    </span><span class="se">\"</span><span class="s2">IQ</span><span class="se">\"</span><span class="s2">: 160,
+    </span><span class="se">\"</span><span class="s2">uno</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">1</span><span class="se">\"</span><span class="s2">,
+    </span><span class="se">\"</span><span class="s2">dos</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">2</span><span class="se">\"</span><span class="s2">
+}
+"</span>
+</code></pre>
+<blockquote>
+<p>El comando previo retorna un JSON como el siguiente:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chile"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"IQ"</span><span class="p">:</span><span class="w"> </span><span class="mi">160</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uno"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Adición de metadata en una conversación especificada.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>PUT https://api.letsta.lk/api/v1/conversations/:id/metadata</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parámetro</th>
+<th>¿Requerido?</th>
+<th>Descripción</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>si</td>
+<td>Número de la conversación dónde se adicionará la metadata</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters'>Body Parameters</h3>
+<p>Cualquier objeto JSON que se deseé agregar como metadata</p>
 
 <h3 id='codigos-de-respuesta'>Códigos de respuesta</h3>
 
