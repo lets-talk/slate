@@ -233,6 +233,14 @@
               </ul>
           </li>
           <li>
+            <a href="#clientes" class="toc-h1 toc-link" data-title="Clientes">Clientes</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#obtener-informacion-de-un-cliente" class="toc-h2 toc-link" data-title="Obtener información de un cliente">Obtener información de un cliente</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#conversaciones" class="toc-h1 toc-link" data-title="Conversaciones">Conversaciones</a>
               <ul class="toc-list-h2">
                   <li>
@@ -465,6 +473,46 @@ Debes reemplazar <code>encoded_api_key== </code> por tu <i>API Key</i>, con los 
 <td>Operación ejecutada con éxito.</td>
 </tr>
 </tbody></table>
+<h1 id='clientes'>Clientes</h1><h2 id='obtener-informacion-de-un-cliente'>Obtener información de un cliente</h2><pre class="highlight shell tab-shell"><code>curl --location --request GET <span class="s2">"https://api.letsta.lk/api/v1/clients/7089264"</span> <span class="se">\</span>
+--header <span class="s2">"Authorization: Basic Q0V6cHJ0M2R6ckdHeGV6eHpob2Q6WA=="</span> <span class="se">\</span>
+--header <span class="s2">"Content-Type: application/json"</span>
+</code></pre>
+<blockquote>
+<p>El comando previo retorna un JSON como el siguiente:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7089264</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Andrew Wiggin"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"andrew.wiggin@letsta.lk"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-03T19:10:15.000+0000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.letsta.lk/assets/default-avatar.gif"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"client_key_values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10915064</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Andrew Wiggin"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10915065</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"andrew.wiggin@letsta.lk"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"avatar_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.letsta.lk/assets/default-avatar.gif"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"confirmed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"guest"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Client"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Obtención de la información de <strong><em>usuario/cliente</em></strong>. Solo es posible obtener la información del <strong><em>usuario/cliente</em></strong> autenticado.</p>
+
+<aside class="success">
+Este <i>endpoint</i> solo puede ser utilizado por el tipo <strong>usuario/cliente</strong>.
+</aside>
+<h3 id='query-parameters'>Query Parameters</h3>
+<p>Sin parámetros.</p>
 <h1 id='conversaciones'>Conversaciones</h1><h2 id='crear-conversacion'>Crear conversación</h2><pre class="highlight shell tab-shell"><code>curl --location --request POST <span class="s2">"https://api.letsta.lk/api/v1/conversations"</span> <span class="se">\</span>
 --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 --header <span class="s2">"Authorization: Basic {{encoded_client_api_key}}"</span> <span class="se">\</span>
